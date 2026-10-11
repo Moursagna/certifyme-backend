@@ -1,3 +1,4 @@
+
 package com.certifyme.backend.config;
 
 import org.springframework.context.annotation.Bean;
@@ -13,10 +14,15 @@ public class CorsConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:5173")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .allowedHeaders("Content-Type");
+                registry.addMapping("/api/**")
+                        .allowedOrigins(
+                                "http://localhost:5173",
+                                "https://certifyme-frontend.onrender.com"
+                        )
+                        .allowedMethods(
+                                "GET", "POST", "PUT", "DELETE", "OPTIONS"
+                        )
+                        .allowedHeaders("*");
             }
         };
     }
